@@ -1,0 +1,9 @@
+unity_to_python: 5555
+yolo_to_rl: 5556
+rl_to_unity: 5557
+backend_ws: 8765
+backend_http: 8000
+unity_image_tcp: 25002
+
+
+

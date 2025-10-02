@@ -1,0 +1,19 @@
+model: yolov8n.pt
+img_size: 640
+epochs: 1
+batch: 2
+conf_threshold: 0.25
+iou_threshold: 0.45
+classes:
+  - person
+  - bicycle
+  - car
+  - motorcycle
+  - bus
+  - truck
+project_dir: C:\\Users\\heman\\Desktop\\Traffic Simulator\\models\\yolo
+weights_output: C:\\Users\\heman\\Desktop\\Traffic Simulator\\models\\yolo\\weights
+dataset_dir: C:\\Users\\heman\\Desktop\\Traffic Simulator\\python\\yolo\\sample_dataset
+
+
+

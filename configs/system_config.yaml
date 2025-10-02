@@ -1,0 +1,15 @@
+system_name: SmartTrafficManagement
+log_dir: C:\\Users\\heman\\Desktop\\Traffic Simulator\\logs
+data_dir: C:\\Users\\heman\\Desktop\\Traffic Simulator\\data
+models_dir: C:\\Users\\heman\\Desktop\\Traffic Simulator\\models
+sample_data_dir: C:\\Users\\heman\\Desktop\\Traffic Simulator\\python\\yolo\\sample_dataset
+fps: 15
+timeout_ms: 3000
+reconnect_interval_ms: 2000
+use_gpu: auto  # auto|true|false
+unity_exe_path: C:\\Users\\heman\\Desktop\\Traffic Simulator\\Unity City Project\\Latest\\Scenario1\\Sumo2UnityTool.exe
+unity_project_path: C:\\Users\\heman\\Desktop\\Traffic Simulator\\Unity City Project\\Latest
+fallback_mode: true
+
+
+

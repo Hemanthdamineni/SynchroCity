@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2025-09-23 18:43:56 by Eclipse SUMO netedit Version 1.24.0
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <!-- VTypes -->
+    <vType id="301" length="4.68" width="2.32" height="1.47" color="0,0,128"/>
+    <vType id="302" length="4.68" width="2.32" height="1.47" color="132,132,132"/>
+    <vType id="303" length="4.06" width="1.84" color="66,66,66"/>
+    <vType id="304" length="4.07" width="1.84" color="228,58,58"/>
+    <vType id="305" length="4.81" guiShape="passenger" width="2.16" color="245,215,50"/>
+    <vType id="306" length="4.81" width="2.16" color="229,229,229"/>
+    <vType id="EgoBike" length="1.80" vClass="bicycle" color="16,186,16"/>
+    <vType id="EgoCar" length="4.81" width="2.16" color="69,56,56"/>
+    <vType id="EgoScooter" length="1.09" vClass="scooter"/>
+    <!-- Vehicles, persons and containers (sorted by depart) -->
+    <flow id="f_1" type="303" begin="0.00" from="E83" to="E84" via="E75 E76 E77 E82" end="3600.00" vehsPerHour="200"/>
+    <flow id="f_2" type="305" begin="0.00" from="E71" to="E84" via="E74 E77 E79 E81" end="3600.00" vehsPerHour="150"/>
+    <flow id="f_3" type="306" begin="0.00" from="E34" to="E36" via="E6 E10 -E8 E1 -E33 -E32 E21 E28 E26" end="3600.00" vehsPerHour="150"/>
+    <flow id="f_4" type="301" begin="0.00" from="-E6" to="E55" via="E10 E11 E3 E29 E25 E26 E39 E54" end="3600.00" vehsPerHour="150"/>
+    <flow id="f_5" type="302" begin="0.00" from="E7" to="E36" via="E0 E8 E9 -E4 E29 E25 E26" end="3600.00" vehsPerHour="150"/>
+    <flow id="f_6" type="303" begin="0.00" from="-E33" to="E55" via="-E32 -E31 -E30 E30 E31 E21 E28 E26 E39 E54" end="3600.00" vehsPerHour="100"/>
+    <flow id="f_7" type="304" begin="0.00" from="E76" to="E84" via="E77 E79 E81" end="3600.00" vehsPerHour="100"/>
+    <flow id="f_8" type="305" begin="0.00" from="E32" to="E26" via="E33 -E1 -E0 -E7 -E6 -E5 -E4 E30 E31 E21 E28" end="3600.00" vehsPerHour="200"/>
+    <flow id="f_9" type="305" begin="0.00" from="-E1" to="E55" via="-E0 -E7 E10 E11 E3 E49 E30 E31 E21 E28 E26 E39 E54" end="3600.00" vehsPerHour="200"/>
+    <trip id="f_0.0" type="EgoCar" depart="540.00" from="E70" to="E87" via="E73 E76 E77 E82"/>
+</routes>

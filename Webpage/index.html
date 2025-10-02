@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynchroCity - AI Traffic Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header/Controls -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-traffic-light"></i>
+                <h1>SynchroCity</h1>
+            </div>
+            <div class="controls">
+                <div class="control-group">
+                    <label for="gridSize">Grid Size:</label>
+                    <select id="gridSize" onchange="changeGridSize(this.value)">
+                        <option value="2x2">2x2 (4 cameras)</option>
+                        <option value="3x3">3x3 (9 cameras)</option>
+                        <option value="4x4">4x4 (16 cameras)</option>
+                        <option value="5x5">5x5 (25 cameras)</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="cameraRange">Camera Range:</label>
+                    <input type="text" id="cameraRange" placeholder="e.g., 1-5 or 1,3,5,7"
+                        onchange="updateCameraSelection(this.value)">
+                </div>
+                <div class="control-group">
+                    <button class="btn-primary" onclick="toggleSimulation()">
+                        <i class="fas fa-play" id="playIcon"></i>
+                        <span id="simStatus">Start Simulation</span>
+                    </button>
+                </div>
+                <div class="status-indicators">
+                    <span class="status-item">
+                        <i class="fas fa-circle status-online"></i>
+                        SUMO Connected
+                    </span>
+                    <span class="status-item">
+                        <i class="fas fa-circle status-online"></i>
+                        80 Cameras Active
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard">
+        <!-- Left Panel -->
+        <aside class="left-panel">
+            <!-- SUMO Map Section -->
+            <div class="map-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-map"></i> SUMO City Map</h3>
+                    <button class="btn-icon" onclick="toggleLeftPanel()" title="Collapse Panel">
+                        <i class="fas fa-chevron-left" id="collapseIcon"></i>
+                    </button>
+                </div>
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <div class="city-map">
+                            <!-- Simulated city grid -->
+                            <div class="road horizontal" style="top: 20%; left: 0; width: 100%; height: 8px;"></div>
+                            <div class="road horizontal" style="top: 50%; left: 0; width: 100%; height: 8px;"></div>
+                            <div class="road horizontal" style="top: 80%; left: 0; width: 100%; height: 8px;"></div>
+                            <div class="road vertical" style="left: 25%; top: 0; width: 8px; height: 100%;"></div>
+                            <div class="road vertical" style="left: 50%; top: 0; width: 8px; height: 100%;"></div>
+                            <div class="road vertical" style="left: 75%; top: 0; width: 8px; height: 100%;"></div>
+
+                            <!-- Traffic signals -->
+                            <div class="traffic-signal" style="top: 18%; left: 23%;" data-status="green"></div>
+                            <div class="traffic-signal" style="top: 18%; left: 48%;" data-status="red"></div>
+                            <div class="traffic-signal" style="top: 18%; left: 73%;" data-status="yellow"></div>
+                            <div class="traffic-signal" style="top: 48%; left: 23%;" data-status="red"></div>
+                            <div class="traffic-signal" style="top: 48%; left: 48%;" data-status="green"></div>
+                            <div class="traffic-signal" style="top: 48%; left: 73%;" data-status="green"></div>
+
+                            <!-- Vehicle indicators -->
+                            <div class="vehicle" style="top: 22%; left: 10%;"></div>
+                            <div class="vehicle" style="top: 22%; left: 35%;"></div>
+                            <div class="vehicle" style="top: 52%; left: 60%;"></div>
+                            <div class="vehicle" style="top: 52%; left: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GPS Data Section -->
+            <div class="gps-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-satellite-dish"></i> GPS Data</h3>
+                </div>
+                <div class="gps-data">
+                    <div class="data-item">
+                        <span class="label">Active Vehicles:</span>
+                        <span class="value" id="activeVehicles">247</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Avg Speed:</span>
+                        <span class="value" id="avgSpeed">32.5 km/h</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Traffic Density:</span>
+                        <span class="value status-warning" id="trafficDensity">Medium</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Congestion Points:</span>
+                        <span class="value status-error" id="congestionPoints">3</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Signal Efficiency:</span>
+                        <span class="value status-success" id="signalEfficiency">87.3%</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="label">Last Update:</span>
+                        <span class="value" id="lastUpdate">2s ago</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Camera Panel -->
+        <main class="camera-panel">
+            <div class="camera-header">
+                <h3><i class="fas fa-video"></i> Camera Feeds</h3>
+                <div class="camera-controls">
+                    <button class="btn-secondary" onclick="selectAllCameras()">Select All</button>
+                    <button class="btn-secondary" onclick="clearCameraSelection()">Clear All</button>
+                    <button class="btn-secondary" onclick="randomizeCameras()">Random Selection</button>
+                </div>
+            </div>
+            <div class="camera-grid" id="cameraGrid">
+                <!-- Camera feeds will be dynamically generated -->
+            </div>
+        </main>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
