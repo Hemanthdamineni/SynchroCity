@@ -1,0 +1,5 @@
+names:
+  0: vehicle
+path: /home/zorro/Desktop/Projects/SynchroCity/Yolo Object Detection/YOLODataset
+train: images/train
+val: images/val

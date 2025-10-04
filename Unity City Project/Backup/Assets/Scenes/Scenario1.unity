@@ -25446,7 +25446,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 954126903}
-  - component: {fileID: 954126902}
   - component: {fileID: 954126904}
   m_Layer: 0
   m_Name: GameObject
@@ -25455,46 +25454,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &954126902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 954126901}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07de37f48a0aaee4b8f2b10d7353901d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameras:
-  - {fileID: 804822671}
-  - {fileID: 2034880027}
-  - {fileID: 908727903}
-  renderTextures:
-  - {fileID: 8400000, guid: cd8569ac2634fe34881962e1c3728ae7, type: 2}
-  - {fileID: 8400000, guid: c952d1d20ce8ff74fa4fc0c243c0c725, type: 2}
-  - {fileID: 8400000, guid: 362f9b71b78c8bd4f9fe4c572c93b53d, type: 2}
-  publisherAddress: tcp://*:5555
-  controlSubscriberAddress: tcp://127.0.0.1:5557
-  maxFrameRate: 30
-  enableGroundTruthDetection: 1
-  vehicleLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  pedestrianLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  trafficLightLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  forceGarbageCollection: 1
-  gcEveryNFrames: 50
-  useCoroutineMode: 1
-  jpegQuality: 60
-  enableDebugLogs: 1
-  enableVerboseLogging: 0
-  enableGroundTruthVisualization: 0
 --- !u!4 &954126903
 Transform:
   m_ObjectHideFlags: 0
@@ -25519,24 +25478,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 954126901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b92f8458e81b18046abea1412b976e5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 67de04a8de31c9770ba9aaaabcd62764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serverIP: 127.0.0.1
   serverPort: 25002
-  captureCameras:
-  - {fileID: 804822671}
-  - {fileID: 2034880027}
-  - {fileID: 908727903}
-  cameraNames:
-  - Camera1
-  - Camera2
-  - Camera3
+  captureCameras: []
+  cameraNames: []
   captureWidth: 640
-  captureHeight: 640
+  captureHeight: 480
   captureRate: 30
   encodeToJPG: 1
   jpgQuality: 75
+  vehiclePartKeywords:
+  - Body
+  excludeKeywords:
+  - Segment
+  - Road
+  - Lane
+  - Ground
+  - Terrain
+  - Sky
+  - Light
+  - Projector
+  - Sign
+  - Junction
+  - Pine
+  - maple
+  - Fir
+  minVehicleSize: 30
+  minPartsForVehicle: 1
 --- !u!1 &954767187
 GameObject:
   m_ObjectHideFlags: 0
@@ -54062,7 +54033,7 @@ GameObject:
   - component: {fileID: 2034880026}
   - component: {fileID: 2034880025}
   m_Layer: 0
-  m_Name: CAMERA2
+  m_Name: Camera2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
